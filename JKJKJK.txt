@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<head>
+  
+
+  <meta charset="UTF-8">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+
+  <BONJOUR>
+ 
+ 
+
+  <script>
+    
+
+
+    function rechercher() {
+            const AGENCE = document.getElementById('AGENCE').value;
+            const recherche = document.getElementById('recherche').value;
+            
+            fetch(/recherche?AGENCE=${AGENCE}&recherche=${recherche})
+                .then(response => response.json())
+                .then(data => {
+                    const resultatDiv = document.getElementById('resultats');
+                    resultatDiv.innerHTML = '<h3>Résultats de recherche:</h3>';
+                    data.forEach(fichier => {
+                        resultatDiv.innerHTML += <p>${fichier}</p>;
+                    });
+                })
+                .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</head>
+<body>
+
+    <h1>BONJOUR</h1>
+    
+    <label for="AGENCE">AGENCE:</label>
+    <input type="text" id="AGENCE" placeholder="Code agence ">
+    <br><br>
+    
+    <label for="recherche">PRESTATAIRE:</label>
+    <input type="text" id="recherche" placeholder="Nom du fichier">
+  
+
+  <br><br>
+    
+
+
+
+
+    <button onclick="rechercher()">Rechercher</button>
+   
+
+
+ 
+    <div id="resultats"></div>
+
+
+
+</body>
+
+
+
+</html>
